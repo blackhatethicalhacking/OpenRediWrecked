@@ -51,17 +51,18 @@ do
     ((counter++))
     response=$(curl -L --silent --write-out "%{http_code}" "${url/$"OPENRPAYLOAD"/$payload}")
     if [ "$response" != "302" ] && [ "$response" != "301" ]; then
-      echo "Testing URL $counter: ${url/$"OPENRPAYLOAD"/$payload}"
-      echo "Not Vulnerable"
+      echo -e "\e[32mTesting URL $counter: ${url/$"OPENRPAYLOAD"/$payload}\e[0m"
+      echo -e "\e[32mNot Vulnerable\e[0m"
     else
       domain=$(echo "${url/$"OPENRPAYLOAD"/$payload}" | awk -F/ '{print $3}')
-      echo "Testing URL $counter: ${url/$"OPENRPAYLOAD"/$payload}"
-      echo "Vulnerable"
+      echo -e "\e[31mTesting URL $counter: ${url/$"OPENRPAYLOAD"/$payload}\e[0m"
+      echo -e "\e[31mVulnerable\e[0m"
       echo "${url/$"OPENRPAYLOAD"/$payload}" >> "${domain}_vulnerable_urls.txt"
       ((num_of_vul_urls++))
     fi
   done < $payloads_file
 done < <(echo "$urls")
+
 
 echo ""
 echo "Attack complete."
