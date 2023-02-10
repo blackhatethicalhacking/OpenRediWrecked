@@ -44,6 +44,9 @@ num_of_urls=0
 num_of_vul_urls=0
 
 counter=0
+num_of_urls=$(echo "$urls" | wc -l)
+num_of_vul_urls=0
+
 while read url
 do
   while read payload
@@ -51,17 +54,27 @@ do
     ((counter++))
     response=$(curl -L --silent --write-out "%{http_code}" "${url/$"OPENRPAYLOAD"/$payload}")
     if [ "$response" != "302" ] && [ "$response" != "301" ]; then
-      echo -e "\e[32mTesting URL $counter: ${url/$"OPENRPAYLOAD"/$payload}\e[0m"
-      echo -e "\e[32mNot Vulnerable\e[0m"
+      echo -e "\033[32mTesting URL $counter: ${url/$"OPENRPAYLOAD"/$payload}\033[0m"
+      echo -e "\033[31mNot Vulnerable\033[0m"
     else
       domain=$(echo "${url/$"OPENRPAYLOAD"/$payload}" | awk -F/ '{print $3}')
-      echo -e "\e[31mTesting URL $counter: ${url/$"OPENRPAYLOAD"/$payload}\e[0m"
-      echo -e "\e[31mVulnerable\e[0m"
+      echo -e "\033[32mTesting URL $counter: ${url/$"OPENRPAYLOAD"/$payload}\033[0m"
+      echo -e "\033[32mVulnerable\033[0m"
       echo "${url/$"OPENRPAYLOAD"/$payload}" >> "${domain}_vulnerable_urls.txt"
       ((num_of_vul_urls++))
     fi
+    
+    # Display progress bar
+    percentage=$(echo "scale=2; $counter/$num_of_urls*100" | bc)
+    num_of_hash=$(echo "($percentage/5)/1" | bc)
+    num_of_dot=$(echo "20-$num_of_hash" | bc)
+    progress_bar=""
+    for i in $(seq 1 $num_of_hash); do progress_bar+="#"; done
+    for i in $(seq 1 $num_of_dot); do progress_bar+="."; done
+    echo -ne "Progress: [$progress_bar] $percentage%\r"
   done < $payloads_file
 done < <(echo "$urls")
+
 
 echo ""
 echo "Attack complete."
