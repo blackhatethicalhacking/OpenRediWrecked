@@ -43,18 +43,19 @@ echo ""
 num_of_urls=0
 num_of_vul_urls=0
 
+counter=0
 while read url
 do
   while read payload
   do
+    ((counter++))
     response=$(curl -L --silent --write-out "%{http_code}" "${url/$"OPENRPAYLOAD"/$payload}")
-    ((num_of_urls++))
     if [ "$response" != "302" ] && [ "$response" != "301" ]; then
-      echo -e "\033[0;31mTesting URL: ${url/$"OPENRPAYLOAD"/$payload}\033[0m"
+      echo "Testing URL $counter: ${url/$"OPENRPAYLOAD"/$payload}"
       echo "Not Vulnerable"
     else
       domain=$(echo "${url/$"OPENRPAYLOAD"/$payload}" | awk -F/ '{print $3}')
-      echo -e "\033[0;32mTesting URL: ${url/$"OPENRPAYLOAD"/$payload}\033[0m"
+      echo "Testing URL $counter: ${url/$"OPENRPAYLOAD"/$payload}"
       echo "Vulnerable"
       echo "${url/$"OPENRPAYLOAD"/$payload}" >> "${domain}_vulnerable_urls.txt"
       ((num_of_vul_urls++))
