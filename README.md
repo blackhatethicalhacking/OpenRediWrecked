@@ -33,12 +33,16 @@ This tool uses a simple and intuitive flow, making it easy to understand how it 
 - SED
 - GREP
 - CURL
+- lolcat
+- Figlet
 
 To install these tools, you can use the following commands:
 
 For SED: `sudo apt-get install sed`
 For GREP: `sudo apt-get install grep`
 For CURL: `sudo apt-get install curl`
+For lolcat: `pip install lolcat`
+For Figlet: `sudo apt-get install -y figlet`
 
 # Installation
 
