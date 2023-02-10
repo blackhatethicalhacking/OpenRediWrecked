@@ -63,7 +63,6 @@ do
   done < $payloads_file
 done < <(echo "$urls")
 
-
 echo ""
 echo "Attack complete."
 echo "Number of URLs tested: $num_of_urls"
