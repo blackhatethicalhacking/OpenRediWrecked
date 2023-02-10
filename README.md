@@ -50,6 +50,12 @@ For CURL: `sudo apt-get install curl`
 
 `./OpenRediWrecked.sh`
 
+- The script will prompt you to provide the target URL(s) to test for open redirect vulnerabilities.
+- Enter one or multiple URLs, separated by space or new line.
+- Download openredirect_payloads.txt file and perform testing against the provided URL(s).
+
+The results will be displayed in the terminal, color-coded for easy identification of vulnerable URLs. The vulnerable URLs will be saved in a file vulnerable_urls.txt in the same folder as the script.
+
 # Screenshot
 
 **Main Menu**
