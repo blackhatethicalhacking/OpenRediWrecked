@@ -64,7 +64,7 @@ The results will be displayed in the terminal, color-coded for easy identificati
 
 **Main Menu**
 
-<img width="958" alt="Screenshot 2023-02-01 at 7 13 41 PM" src="https://user-images.githubusercontent.com/13942386/216113965-4609c07b-7c8b-45f4-9575-4addef0623e8.png">
+![Screenshot 2023-02-10 at 8 43 33 PM](https://user-images.githubusercontent.com/13942386/218172516-f88473cd-e9bd-472e-8541-1b2e9c3f91e6.png)
 
 
 # Compatibility: 
