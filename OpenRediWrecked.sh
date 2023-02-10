@@ -28,14 +28,15 @@ if [ $? -ne 0 ];then
 fi
 tput bold;echo "++++ CONNECTION FOUND, LET'S GO!" | lolcat
 
-echo "Enter path to URLs with parameters: "
+echo "Enter path to URLs with parameters: " | lolcat
 read urls_file
 
-echo "Enter path to OpenRedirect Payloads: "
+echo "Enter path to OpenRedirect Payloads: " | lolcat
 read payloads_file
 
-echo "Sorting parameters and adding 'OPENRPAYLOAD' to URLs..."
+echo "Sorting parameters and adding 'OPENRPAYLOAD' to URLs..."| lolcat
 urls=$(cat $urls_file | sed "s/\?.*/\?OPENRPAYLOAD/g")
+sleep 1
 echo "Sorting complete. Starting attack..." | lolcat
 
 echo ""
