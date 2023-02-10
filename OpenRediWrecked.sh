@@ -63,15 +63,6 @@ do
       echo "${url/$"OPENRPAYLOAD"/$payload}" >> "${domain}_vulnerable_urls.txt"
       ((num_of_vul_urls++))
     fi
-    
-    # Display progress bar
-    percentage=$(echo "scale=2; $counter/$num_of_urls*100" | bc)
-    num_of_hash=$(echo "($percentage/5)/1" | bc)
-    num_of_dot=$(echo "20-$num_of_hash" | bc)
-    progress_bar=""
-    for i in $(seq 1 $num_of_hash); do progress_bar+="#"; done
-    for i in $(seq 1 $num_of_dot); do progress_bar+="."; done
-    echo -ne "Progress: [$progress_bar] $percentage%\r"
   done < $payloads_file
 done < <(echo "$urls")
 
