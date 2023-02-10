@@ -34,7 +34,7 @@ read urls_file
 echo "Enter path to OpenRedirect Payloads: " | lolcat
 read payloads_file
 
-echo "Sorting parameters and adding 'OPENRPAYLOAD' to URLs..."| lolcat
+echo "Sorting parameters and adding 'OPENRPAYLOAD' to URLs..." | lolcat
 urls=$(cat $urls_file | sed "s/\?.*/\?OPENRPAYLOAD/g")
 sleep 1
 echo "Sorting complete. Starting attack..." | lolcat
