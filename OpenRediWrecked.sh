@@ -23,7 +23,7 @@ tput bold;echo "CHECKING IF YOU ARE CONNECTED TO THE INTERNET!" | lolcat
 # Check connection
 wget -q --spider https://google.com
 if [ $? -ne 0 ];then
-    echo "++++ CONNECT TO THE INTERNET BEFORE RUNNING ScopeHunter.sh!" | lolcat
+    echo "++++ CONNECT TO THE INTERNET BEFORE RUNNING OpenRediWrecked.sh!" | lolcat
     exit 1
 fi
 tput bold;echo "++++ CONNECTION FOUND, LET'S GO!" | lolcat
@@ -36,7 +36,7 @@ read payloads_file
 
 echo "Sorting parameters and adding 'OPENRPAYLOAD' to URLs..."
 urls=$(cat $urls_file | sed "s/\?.*/\?OPENRPAYLOAD/g")
-echo "Sorting complete. Starting attack..."
+echo "Sorting complete. Starting attack..." | lolcat
 
 echo ""
 
