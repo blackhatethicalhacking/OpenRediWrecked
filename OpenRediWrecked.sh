@@ -72,14 +72,8 @@ echo "Attack complete."
 echo "Number of URLs tested: $num_of_urls"
 echo "Number of vulnerable URLs found: $num_of_vul_urls"
 # Matrix effect
-echo "Exiting the Matrix for 5 seconds in:" | toilet --metal -f term -F border
-sleep 1
-echo "3" | toilet --gay -f term -F border
-sleep 1
-echo "2" | toilet --metal -f term -F border
-sleep 1
-echo "1" | toilet --gay -f term -F border
-sleep 1
+echo "Exiting the Matrix for 5 seconds" | toilet --metal -f term -F border
+
 
 R='\033[0;31m'
 G='\033[0;32m'
